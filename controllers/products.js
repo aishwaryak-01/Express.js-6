@@ -1,63 +1,28 @@
 const products = [];
 
-exports.getAddProduct = (req, res, next) => {
-    res.render('add-product', {
-      pageTitle: 'Add Product',
-      path: '/admin/add-product',
-      formsCSS: true,
-      productCSS: true,
-      activeAddProduct: true
-    });
-  }
+const path = require('path');
+
+exports.getAddProducts = (req, res, next) => {
+res.render('add-product', {pageTitle: 'Add Product', path:'/admin/add-product', formsCSS:true, productCSS:true, activeAddProduct:true});
+}
 
 exports.postAddProducts = (req, res, next) => {
-    products.push({ title: req.body.title });
-    res.redirect('/');
-  }
+products.push({title:req.body.title});
+res.redirect('/');
+}
 
 exports.getProducts = (req, res, next) => {
-    res.render('shop', {
-      prods: products,
-      pageTitle: 'Shop',
-      path: '/',
-      hasProducts: products.length > 0,
-      activeShop: true,
-      productCSS: true
-    });
-  }
+    res.render('shop', {pageTitle:'shop', path:'/', productsCSS:true, activeShop:true, hasProducts:products.length>0, prods:products});
+}
 
-  exports.getContactus = (req, res, next) => {
-    res.render('contactus', {
-      pageTitle: 'Contact Us',
-      path: '/contactus',
-      formsCSS: true,
-      productCSS: true,
-      activeAddProduct: true
-    });
-  }
+exports.getContact = (req, res, next) => {
+    res.render('contactus', {pageTitle: 'ContactUs', path:'/contactus', formsCSS:true, activeContact:true})
+}
 
-  exports.postContactus = (req, res, next) => {
-    products.push({ title: req.body.title });
+exports.postContact = (req, res, next) => {
     res.redirect('/success');
-  }
+}
 
-  exports.getSuccess = (req, res, next) => {
-    res.render('success', {
-      pageTitle: 'Success',
-      path: '/success',
-      formsCSS: true,
-      productCSS: true,
-      activeAddProduct: true,
-    });
-  }
-
-  exports.getError = (req, res, next) => {
-    res.render('404', {
-      pageTitle: 'Error',
-      path: '/shop',
-      formsCSS: true,
-      productCSS: true,
-      activeAddProduct: true,
-    });
-  }
-
+exports.getSuccesss = (req, res, next) => {
+    res.render('Success', {pageTitle:'Success', path:'/success', formsCSS:true, activeSuccess:true});
+}
